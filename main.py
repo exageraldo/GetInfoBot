@@ -16,14 +16,17 @@ def help(bot, update):
 
 
 def info(parse, update):
-    update.message.reply_text(
-        f"id: <code>{update.message.from_user.id}</code>\n"
-        f"first_name: {update.message.from_user.first_name}\n"
-        f"last_name: {update.message.from_user.last_name}\n"
-        f"username: @{update.message.from_user.username}\n"
-        f"is_bot: <code>{update.message.from_user.is_bot}</code>\n"
-        f"language_code: {update.message.from_user.language_code}\n"
-    , parse_mode=ParseMode.HTML)
+    text = (
+         " 🦄 <b>You</b>:\n"
+        f" ├ id: <code>{update.message.from_user.id}</code>\n"
+        f" ├ first_name: {update.message.from_user.first_name}\n"
+        f" ├ last_name: {update.message.from_user.last_name}\n"
+        f" ├ username: @{update.message.from_user.username}\n"
+        f" ├ is_bot: <code>{update.message.from_user.is_bot}</code>\n"
+        f" └ language_code: {update.message.from_user.language_code}\n"
+        )
+    
+    update.message.reply_text(text, parse_mode=ParseMode.HTML)
         
         
 def error(bot, update, error):
