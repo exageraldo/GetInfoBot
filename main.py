@@ -16,6 +16,7 @@ def help(bot, update):
 
 
 def info(parse, update):
+    print(update.message)
     text = (
          " 🦄 <b>You</b>:\n"
         f" ├ id: <code>{update.message.from_user.id}</code>\n"
@@ -25,7 +26,18 @@ def info(parse, update):
         f" ├ is_bot: <code>{update.message.from_user.is_bot}</code>\n"
         f" └ language_code: {update.message.from_user.language_code}\n"
         )
-    
+    if getattr(update.message, 'forward_from'):
+        text += (
+             "\n"
+             " 📩 <b>Message</b>:\n"
+            f" ├ Original date: {update.message.forward_date}\n"
+            f" ├ id: {update.message.forward_from.id}\n"
+            f" ├ first name: {update.message.forward_from.first_name}\n"
+            f" ├ last name: {update.message.forward_from.last_name}\n"
+            f" ├ username: @{update.message.forward_from.username}\n"
+            f" ├ bot? {update.message.forward_from.is_bot}\n"
+            f" └ languate: {update.message.forward_from.language_code}\n"
+            )
     update.message.reply_text(text, parse_mode=ParseMode.HTML)
         
         
